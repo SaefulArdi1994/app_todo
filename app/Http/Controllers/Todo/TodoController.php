@@ -12,7 +12,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        return view('todo.app');
     }
 
     /**
@@ -28,7 +28,13 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'task' => 'required|min:3|max:25'
+        ], [
+            'task.required' => 'tidak wajib di isi',
+            'task.min' => 'minimal 3 karakter',
+            'task.max' => 'maximal 25 karakter',
+        ]);
     }
 
     /**
