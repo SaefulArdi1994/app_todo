@@ -7,6 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/todo', [TodoController::class, 'index']);
-
-Route::post('/todo', [TodoController::class, 'store']);
+Route::get('/todo', [TodoController::class, 'index'])->name('todo');
+Route::post('/todo', [TodoController::class, 'store'])->name('todo.add');

@@ -56,7 +56,7 @@
                             </div>
                         @endif
                         <!-- 02. Form input data -->
-                        <form id="todo-form" action="{{ url('/todo') }}" method="post">
+                        <form id="todo-form" action="{{ route('todo.add') }}" method="post">
                             @csrf
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="task" id="todo-input"
