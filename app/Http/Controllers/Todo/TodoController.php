@@ -14,7 +14,9 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return view('todo.app');
+        $data = Todo::orderBy('task', 'asc')->get();
+        // return view("todo.app", ['data' => $data]); or
+        return view("todo.app", compact('data'));
     }
 
     /**
@@ -68,7 +70,21 @@ class TodoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'task' => 'required|min:3|max:25'
+        ], [
+            'task.required' => 'tidak wajib di isi',
+            'task.min' => 'minimal 3 karakter',
+            'task.max' => 'maximal 25 karakter',
+        ]);
+
+        $data = [
+            'task'      => $request->input('task'),
+            'is_done'   => $request->input('is_done')
+        ];
+
+        Todo::where('id', $id)->update($data);
+        return redirect('/todo')->with('success', 'Data berhasil di perbaiki');
     }
 
     /**
