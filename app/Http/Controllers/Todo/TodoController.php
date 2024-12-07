@@ -84,7 +84,7 @@ class TodoController extends Controller
         ];
 
         Todo::where('id', $id)->update($data);
-        return redirect('/todo')->with('success', 'Data berhasil di perbaiki');
+        return redirect()->route('todo')->with('success', 'Data berhasil di update');
     }
 
     /**
