@@ -89,12 +89,15 @@
                                         {!! $item->is_done == '1' ? '<del>' : ''!!}
                                             {{ $item->task }}
                                         {!! $item->is_done == '1' ? '</del>' : ''!!}
-
                                     </span>
                                     <input type="text" class="form-control edit-input" style="display: none;"
                                         value="{{ $item->data }}">
                                     <div class="btn-group">
-                                        <button class="btn btn-danger btn-sm delete-btn">✕</button>
+                                        <form action="{{ route('todo.delete', ['id' => $item->id]) }}" method="POST" onsubmit="return confirm('Anda yakin ?')">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger btn-sm delete-btn">✕</button>
+                                        </form>
                                         <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="collapse"
                                             data-bs-target="#collapse-{{ $loop ->index }}" aria-expanded="false">✎</button>
                                     </div>
