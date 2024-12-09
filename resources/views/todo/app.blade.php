@@ -71,9 +71,9 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- 03. Searching -->
-                        <form id="todo-form" action="" method="get">
+                        <form id="todo-form" action="{{ route('todo') }}" method="get">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="search" value=""
+                                <input type="text" class="form-control" name="search" value="{{ request('search') }}"
                                     placeholder="masukkan kata kunci">
                                 <button class="btn btn-secondary" type="submit">
                                     Cari
@@ -131,6 +131,8 @@
                                 </li>
                             @endforeach
                         </ul>
+
+                        {{ $data ->links() }}
 
                     </div>
                 </div>
