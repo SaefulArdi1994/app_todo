@@ -9,7 +9,7 @@
                         Akun Saya
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                         <li><a class="dropdown-item" href="#">Update Data</a></li>
                     </ul>
                 </li>
