@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     function login()
     {
-
+        return view('user.login');
     }
 
     function doLogin()

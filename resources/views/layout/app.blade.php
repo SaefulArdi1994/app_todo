@@ -17,6 +17,7 @@
 
         <!-- Content -->
         @yield('content')
+
     </div>
 
     <!-- Bootstrap JS Bundle (popper.js included) -->
