@@ -10,10 +10,13 @@
 
         <div class="w-50 center border rounded px-3 py-3 mx-auto">
             <h1>Login</h1>
-            <form action="/sesi/login" method="POST">
+            <form action="{{ route('login.post') }}" method="POST">
+                @csrf
+                {{-- Notif --}}
+                @include('layout.notif')
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" value="" name="email" class="form-control" autocomplete="off">
+                    <input type="email" name="email" class="form-control" autocomplete="off" value="{{ old('email') }}">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>

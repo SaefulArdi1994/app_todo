@@ -9,6 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/user/login', [UserController::class, 'login'])->name('login');
+Route::post('/user/login', [UserController::class, 'doLogin'])->name('login.post');
 
 Route::get('/todo', [TodoController::class, 'index'])->name('todo');
 Route::post('/todo', [TodoController::class, 'store'])->name('todo.add');
