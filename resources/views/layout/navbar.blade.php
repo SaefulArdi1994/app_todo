@@ -10,7 +10,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
-                        <li><a class="dropdown-item" href="#">Update Data</a></li>
+                        <li><a class="dropdown-item" href="{{ route('user.updatedata')}}">Update Data</a></li>
                     </ul>
                 </li>
             </ul>
