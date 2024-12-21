@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class GuestMiddleware
 {
@@ -15,8 +16,8 @@ class GuestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(isset(Auth::user()->id)!= '') {
-            return redirect()->route('todo')->with('sucess', 'Kamu sudah login');
+        if(isset(Auth::user()->id) != '') {
+            return redirect()->route('todo')->with('success', 'Kamu sudah login');
         }
         return $next($request);
     }

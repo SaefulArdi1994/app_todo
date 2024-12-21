@@ -39,7 +39,7 @@ class UserController extends Controller
 
     function updateData()
     {
-
+        return view('user.update-user');
     }
 
     function doUpdateData()
