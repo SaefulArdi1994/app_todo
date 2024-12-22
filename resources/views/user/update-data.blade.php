@@ -16,7 +16,7 @@
                 @include('layout.notif')
                 <div class="mb-3">
                     <label for="name" class="form-label">Nama</label>
-                    <input type="text" name="name" id="name" class="form-control" autocomplete="off" value="{{ old('name')?old('name'):Auth::user()->name }}">
+                    <input type="text" name="name" id="name" class="form-control" autocomplete="off" value="{{ old('name') ? old('name'):Auth::user()->name }}">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
