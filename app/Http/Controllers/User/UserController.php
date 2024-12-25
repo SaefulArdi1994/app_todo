@@ -28,14 +28,43 @@ class UserController extends Controller
         }
     }
 
-    function register()
+    function registrasi()
     {
-
+        return view('user.registrasi');
     }
 
-    function doRegister()
+    function doRegistrasi(Request $request)
     {
+        $request->validate
+        (
+            [
+                'email' => 'required|string|email:rfc,dns|max:100|unique:users,email',
+                'name' => 'required|min:2|max:25',
+                'password' => 'nullable|string|min:6',
+                'password-confirm' => 'required_with:password|same:password'
+            ], [
+                'email.required' => 'Email harus diisi',
+                'email.string' => 'Email harus diisi oleh string',
+                'email.email' => 'Format email harus valid',
+                'email.max' => 'Maksimal email 100 karakter',
+                'email.unique' => 'Email sudah terdaftar',
+                'name.required' => 'Kolom nama wajib diisi',
+                'name.min' => 'Minimum karakter nama adalah 2 karakter',
+                'name.max' => 'Maksimal karakter nama adalah 25 karakter',
+                'password.string' => 'Hanya string yang diperbolehkan',
+                'password.min' => 'Password minimim 6 karakter',
+                'password-confirm.required_with' => 'Password confirm harus diisi',
+                'password-confirm.same' => 'Password tidak sama',
+            ]
+        );
 
+        $data = [
+            'email' => $request->input('email'),
+            'name' => $request->input('name'),
+            'password' => bcrypt($request->input('password')),
+        ];
+
+        User::create($data);
     }
 
     function updateData()

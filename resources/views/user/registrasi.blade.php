@@ -6,7 +6,7 @@
 
         <div class="w-50 center border rounded px-3 py-3 mx-auto">
             <h1>Registrasi</h1>
-            <form action="{{ route('user.updatedata.post') }}" method="POST">
+            <form action="" method="POST">
                 @csrf
                 {{-- Notif --}}
                 @include('layout.notif')
@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" autocomplete="off" value="{{ old('name') }}">
+                    <input type="email" name="email" class="form-control" autocomplete="off" value="{{ old('email') }}">
                 </div>
                 <h3>Password</h3>
                 <div class="mb-3">
@@ -28,7 +28,7 @@
                     <input type="password" name="password-confirm" id="password-confirm" class="form-control">
                 </div>
                 <div class="mb-3 d-grid">
-                    <a href="{{ route('login')}}">Login</a>
+                    <a href="{{ route('registrasi')}}">Login</a>
                     <button name="submit" type="submit" class="btn btn-primary">Registrasi</button>
                 </div>
             </form>

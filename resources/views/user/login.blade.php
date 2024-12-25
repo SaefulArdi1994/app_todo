@@ -2,10 +2,6 @@
 
 @section('title', 'App - Login')
 
-@section('navbar')
-@include('layout.navbar')
-@endsection
-
 @section('content')
 
         <div class="w-50 center border rounded px-3 py-3 mx-auto">
