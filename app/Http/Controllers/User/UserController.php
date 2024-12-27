@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\UserVerify;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -65,6 +67,16 @@ class UserController extends Controller
         ];
 
         User::create($data);
+        $cekToken = UserVerify::where('email', $request->input('email'))->first();
+        if($cekToken) {
+            UserVerify::where('email', $request->input('email'))->delete();
+        }
+        $token=Str::uuid();
+        $data = [
+            'email' => $request->input('email'),
+            'token' => $token
+        ];
+        UserVerify::create($data);
     }
 
     function updateData()
