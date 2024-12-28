@@ -21,7 +21,8 @@ Route::middleware('guest')->group(function() {
     Route::get('/user/login', [UserController::class, 'login'])->name('login');
     Route::post('/user/login', [UserController::class, 'doLogin'])->name('login.post');
     Route::get('/user/registrasi', [UserController::class, 'registrasi'])->name('registrasi');
-    Route::post('/user/registrasi', [UserController::class, 'doregistrasi'])->name('registrasi.post');
+    Route::post('/user/registrasi', [UserController::class, 'doRegistrasi'])->name('registrasi.post');
+    Route::post('/user/verifyaccount/{token}', [UserController::class, 'verifyAccount'])->name('user.verifyaccount');
 });
 
 

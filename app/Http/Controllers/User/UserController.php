@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -77,6 +78,11 @@ class UserController extends Controller
             'token' => $token
         ];
         UserVerify::create($data);
+
+        Mail::send('user.email-verification', ['token' => $token], function ($message) use ($request) {
+            $message->to($request->input('email'));
+            $message->subject('Email verification');
+        });
     }
 
     function updateData()
@@ -116,5 +122,10 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    function verifyAccount()
+    {
+        echo "Hallo";
     }
 }
