@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\UserVerify;
 use Illuminate\Support\Str;
@@ -127,8 +128,27 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
-    function verifyAccount()
+    function verifyAccount($token)
     {
-        echo "Hallo";
+        $checkuser = UserVerify::where('token', $token)->first();
+        if(!is_null($checkuser)) {
+            $email = $checkuser->email;
+
+            $datauser = User::where('email', $email)->first();
+            if ($datauser->email_verified_at) {
+                $message = 'Akun anda sudah terverifikasi sebelumnya';
+            } else {
+                $data = [
+                    'email_verified_at' => Carbon::now()
+                ];
+                User::where('email', $email)->update($data);
+                Userverify::where('email', $email)->delete();
+                $message = "Akun anda sudah terverifikasi,silahkan login";
+            }
+
+            return redirect()->route('login')->with('success', $message);
+        } else {
+            return redirect()->route('login')->withErrors('Link token tidak valid');
+        }
     }
 }
