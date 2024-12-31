@@ -22,7 +22,7 @@ Route::middleware('guest')->group(function() {
     Route::post('/user/login', [UserController::class, 'doLogin'])->name('login.post');
     Route::get('/user/registrasi', [UserController::class, 'registrasi'])->name('registrasi');
     Route::post('/user/registrasi', [UserController::class, 'doRegistrasi'])->name('registrasi.post');
-    Route::post('/user/verifyaccount/{token}', [UserController::class, 'verifyAccount'])->name('user.verifyaccount');
+    Route::get('/user/verifyaccount/{token}', [UserController::class, 'verifyAccount'])->name('user.verifyaccount');
 });
 
 

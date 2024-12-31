@@ -68,6 +68,7 @@ class UserController extends Controller
         ];
 
         User::create($data);
+
         $cekToken = UserVerify::where('email', $request->input('email'))->first();
         if($cekToken) {
             UserVerify::where('email', $request->input('email'))->delete();
@@ -79,10 +80,12 @@ class UserController extends Controller
         ];
         UserVerify::create($data);
 
-        Mail::send('user.email-verification', ['token' => $token], function ($message) use ($request) {
+        Mail::send('user.email-verification', ['token' => $token],function($message) use ($request) {
             $message->to($request->input('email'));
             $message->subject('Email verification');
         });
+
+        return redirect()->route('registrasi')->with('success', 'Email verifikasi telah dikirimkan. silahkan cek terlebih dahulu')->withInput();
     }
 
     function updateData()
