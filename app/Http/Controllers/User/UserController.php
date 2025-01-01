@@ -26,7 +26,12 @@ class UserController extends Controller
         ];
 
         if(Auth::attempt($data)) {
-            return redirect()->route('todo');
+            if(Auth::user()->email_verified_at == ''){
+                Auth::logout();
+                return redirect()->route('login')->withErrors('Email belum terverifikasi, silahkan cek email anda!')->withInput();
+            } else {
+                return redirect()->route('todo');
+            }
         } else {
             return redirect()->route('login')->withErrors('Username atau password tidak sesuai')->withInput();
         }

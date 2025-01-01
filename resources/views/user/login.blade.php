@@ -18,8 +18,9 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control">
                 </div>
-                <div class="mb-3 d-grid">
+                <div class="mb-3">
                     <button name="submit" type="submit" class="btn btn-primary">Login</button>
+                    <a href="{{ route('registrasi')}}">Belum punya akun ? Silahkan melakukan registrasi</a>
                 </div>
             </form>
         </div>

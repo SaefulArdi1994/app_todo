@@ -27,9 +27,9 @@
                     <label for="password-confirm" class="form-label">Konfirmasi Password</label>
                     <input type="password" name="password-confirm" id="password-confirm" class="form-control">
                 </div>
-                <div class="mb-3 d-grid">
-                    <a href="{{ route('registrasi')}}">Login</a>
+                <div class="mb-3">
                     <button name="submit" type="submit" class="btn btn-primary">Registrasi</button>
+                    <a href="{{ route('login')}}">Sudah punya akun ? Silahkan melakukan login</a>
                 </div>
             </form>
         </div>
