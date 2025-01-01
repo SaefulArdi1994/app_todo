@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Todo\TodoController;
 use App\Http\Controllers\User\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\ForgotPasswordController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,6 +24,7 @@ Route::middleware('guest')->group(function() {
     Route::get('/user/registrasi', [UserController::class, 'registrasi'])->name('registrasi');
     Route::post('/user/registrasi', [UserController::class, 'doRegistrasi'])->name('registrasi.post');
     Route::get('/user/verifyaccount/{token}', [UserController::class, 'verifyAccount'])->name('user.verifyaccount');
+    Route::get('/user/forgotpassword', [ForgotPasswordController::class, 'forgotPasswordForm'])->name('forgotpassword');
 });
 
 
