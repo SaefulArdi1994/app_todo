@@ -6,7 +6,7 @@
 
         <div class="w-50 center border rounded px-3 py-3 mx-auto">
             <h1>Reset Pasword</h1>
-            <form action="" method="post">
+            <form action="{{ route('forgotpassword.post') }}" method="post">
                 @csrf
                 {{-- Notif --}}
                 @include('layout.notif')
