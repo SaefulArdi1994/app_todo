@@ -26,6 +26,8 @@ Route::middleware('guest')->group(function() {
     Route::get('/user/verifyaccount/{token}', [UserController::class, 'verifyAccount'])->name('user.verifyaccount');
     Route::get('/user/forgotpassword', [ForgotPasswordController::class, 'forgotPasswordForm'])->name('forgotpassword');
     Route::post('/user/forgotpassword', [ForgotPasswordController::class, 'doForgotPasswordForm'])->name('forgotpassword.post');
+
+    Route::get('/user/resetpassword/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('resetpassword');
 });
 
 
