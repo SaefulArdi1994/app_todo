@@ -48,6 +48,6 @@ class ForgotPasswordController extends Controller
 
     public function resetPassword($token)
     {
-        echo "Halo token anda adalah $token";
+        return view('user.reset-password', compact('token'));
     }
 }
