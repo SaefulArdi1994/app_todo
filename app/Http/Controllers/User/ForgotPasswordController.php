@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\UserVerify;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Models\User;
-use App\Models\UserVerify;
+
 
 class ForgotPasswordController extends Controller
 {
@@ -50,4 +52,37 @@ class ForgotPasswordController extends Controller
     {
         return view('user.reset-password', compact('token'));
     }
+
+    public function doResetPassword(Request $request)
+    {
+        $request->validate
+        (
+            [
+                'password' => 'nullable|string|min:6',
+                'password-confirm' => 'required_with:password|same:password'
+            ], [
+                'password.required' => 'Password harus diisikan',
+                'password.string' => 'Hanya string yang diperbolehkan',
+                'password.min' => 'Password minimim 6 karakter',
+                'password-confirm.required_with' => 'Password confirm harus diisi',
+                'password-confirm.same' => 'Password tidak sama',
+            ]
+        );
+
+        $dataUser = UserVerify::where('token', $request->input('token'))->first();
+        if(!$dataUser) {
+            return redirect()->back()->withInput()->withErrors('Token tidak valid');
+        }
+
+        $email = $dataUser->email;
+        $data = [
+            'password' => bcrypt($request->input('password')),
+            'email_verified_at' => Carbon::now()
+        ];
+        User::where('email', $email)->update($data);
+
+        UserVerify::where('email', $email)->delete();
+        return redirect()->route('login')->with('success', 'Password berhasil direset');
+    }
+
 }

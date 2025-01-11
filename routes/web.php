@@ -28,6 +28,8 @@ Route::middleware('guest')->group(function() {
     Route::post('/user/forgotpassword', [ForgotPasswordController::class, 'doForgotPasswordForm'])->name('forgotpassword.post');
 
     Route::get('/user/resetpassword/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('resetpassword');
+    Route::post('/user/resetpassword', [ForgotPasswordController::class, 'doResetPassword'])->name('resetpassword.post');
+
 });
 
 

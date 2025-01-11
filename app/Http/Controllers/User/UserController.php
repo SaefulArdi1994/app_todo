@@ -60,6 +60,7 @@ class UserController extends Controller
                 'name.required' => 'Kolom nama wajib diisi',
                 'name.min' => 'Minimum karakter nama adalah 2 karakter',
                 'name.max' => 'Maksimal karakter nama adalah 25 karakter',
+                'password.required' => 'Password harus diisikan',
                 'password.string' => 'Hanya string yang diperbolehkan',
                 'password.min' => 'Password minimim 6 karakter',
                 'password-confirm.required_with' => 'Password confirm harus diisi',
