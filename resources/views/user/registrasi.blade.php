@@ -29,7 +29,7 @@
                 </div>
                 <div class="mb-3">
                     <button name="submit" type="submit" class="btn btn-primary">Registrasi</button>
-                    <a href="{{ route('login')}}">Sudah punya akun ? Silahkan melakukan login</a>
+                    <a href="{{ route('login')}}">login</a> | <a href="{{ route ('forgotpassword') }}">Lupa Password ?</a>
                 </div>
             </form>
         </div>
